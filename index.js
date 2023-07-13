@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const methodOverride = require('method-override');
 const { v4: uuid } = require('uuid');
 
 
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'));
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -51,6 +53,20 @@ app.get('/hobbies/:id', (req, res) => {
     const { id } = req.params;
     const foundHobby = hobbies.find(h => h.id === id);
     res.render('hobbies/show', { foundHobby });
+})
+
+app.get('/hobbies/:id/edit', (req, res) => {
+    const { id } = req.params;
+    const hobby = hobbies.find(h => h.id === id);
+    res.render('hobbies/edit', { hobby });
+})
+
+app.patch('/hobbies/:id', (req, res) => {
+    const { id } = req.params;
+    newHobbyText = req.body.activity;
+    const foundHobby = hobbies.find(h => h.id === id);
+    foundHobby.activity = newHobbyText; 
+    res.redirect('/hobbies');
 })
 
 app.listen(3000, () => {

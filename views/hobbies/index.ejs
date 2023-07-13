@@ -10,6 +10,7 @@
         <% for(let h of hobbies)  { %>
         <li><b><%= h.feeling %></b> - <%= h.activity %>
         <a href="/hobbies/<%= h.id %>">Details</a></li>
+        <a href="/hobbies/<%= h.id %>/edit">Edit</a></li>
         <% } %>
     </ul>
     <a href="/hobbies/new">New Hobby</a>
