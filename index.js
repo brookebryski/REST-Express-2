@@ -69,6 +69,12 @@ app.patch('/hobbies/:id', (req, res) => {
     res.redirect('/hobbies');
 })
 
+app.delete('/hobbies/:id', (req, res) => {
+    const { id } = req.params;
+    hobbies = hobbies.filter(h => h.id !== id);
+    res.redirect('/hobbies');
+})
+
 app.listen(3000, () => {
     console.log("listening on port 3000");
 })

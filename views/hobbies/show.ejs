@@ -8,5 +8,10 @@
 <body>
     <h1><%= foundHobby.feeling %></h1>
     <h2><%= foundHobby.activity %></h2>
+    <a href="/hobbies">Back to Hobbies</a>
+    <a href="/hobbies/<%= foundHobby.id%>/edit">Edit Hobby</a>
+    <form method="POST" action="/hobbies/<%= foundHobby.id%>?_method=DELETE">
+    <button>Delete</button>
+    </form>
 </body>
 </html>
